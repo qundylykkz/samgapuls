@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Самға Puls — Педагогикалық Инновациялар мен Серіктестік Платформасы</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Inter/Poppins) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#10B981', // Emerald green representing growth/tree
+                        secondary: '#0F766E',
+                        accent: '#F59E0B',
+                        darkBg: '#0F172A',
+                        cardBg: '#1E293B',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .active-tab {
+            border-bottom: 3px solid #10B981;
+            color: #10B981;
+            font-weight: 600;
+        }
+        .tree-stage-card {
+            transition: all 0.3s ease;
+        }
+        .tree-stage-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans flex flex-col min-h-screen">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
+                    <div class="bg-emerald-600 text-white p-3 rounded-2xl shadow-lg flex items-center justify-center">
+                        <i class="fa-solid fa-tree text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-bold tracking-tight text-slate-900">Самға <span class="text-emerald-600">Puls</span></span>
+                        <p class="text-xs text-slate-500 font-medium">Педагогикалық серіктестік порталы</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Nav Navigation -->
+                <nav class="hidden md:flex space-x-1 lg:space-x-4">
+                    <button onclick="switchTab('home')" id="nav-home" class="nav-btn px-3 py-2 text-sm font-medium text-slate-700 hover:text-emerald-600 transition active-tab">Басты бет</button>
+                    <button onclick="switchTab('experience')" id="nav-experience" class="nav-btn px-3 py-2 text-sm font-medium text-slate-700 hover:text-emerald-600 transition">Озық тәжірибе</button>
+                    <button onclick="switchTab('young-teachers')" id="nav-young-teachers" class="nav-btn px-3 py-2 text-sm font-medium text-slate-700 hover:text-emerald-600 transition">Жас мамандарға көмек</button>
+                    <button onclick="switchTab('digital')" id="nav-digital" class="nav-btn px-3 py-2 text-sm font-medium text-slate-700 hover:text-emerald-600 transition">Цифрлық педагог</button>
+                    <button onclick="switchTab('resources')" id="nav-resources" class="nav-btn px-3 py-2 text-sm font-medium text-slate-700 hover:text-emerald-600 transition">Әдістемелік қоржын</button>
+                    <button onclick="switchTab('collaboration')" id="nav-collaboration" class="nav-btn px-3 py-2 text-sm font-medium text-emerald-700 bg-emerald-50 rounded-lg border border-emerald-200 hover:bg-emerald-100 transition">Ата-анамен жұмыс</button>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-slate-600 hover:text-slate-900 focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2">
+            <button onclick="switchTab('home'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100">Басты бет</button>
+            <button onclick="switchTab('experience'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100">Озық тәжірибе</button>
+            <button onclick="switchTab('young-teachers'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100">Жас мамандарға көмек</button>
+            <button onclick="switchTab('digital'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100">Цифрлық педагог</button>
+            <button onclick="switchTab('resources'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100">Әдістемелік қоржын</button>
+            <button onclick="switchTab('collaboration'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-emerald-700 bg-emerald-50">Ата-анамен жұмыс (COLLABORATION)</button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow">
+        
+        <!-- ==================== 1. BASTY BET (HOME) ==================== -->
+        <section id="tab-home" class="tab-content block">
+            <!-- Hero Section -->
+            <div class="relative bg-gradient-to-r from-emerald-800 to-teal-900 text-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                <div class="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row items-center justify-between">
+                    <div class="md:w-1/2 mb-10 md:mb-0 space-y-6">
+                        <span class="bg-emerald-500/20 text-emerald-300 text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full border border-emerald-400/30">MobileSTAR · II тур «Mobile Legacy»</span>
+                        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+                            Самға Puls: Заманауи педагог пен отбасы серіктестігі
+                        </h1>
+                        <p class="text-slate-200 text-lg">
+                            Ұстаздарға әдістемелік қолдау көрсету, озық тәжірибе тарату және ата-ананы білім беру процесінің тең серіктесіне айналдыру платформасы.
+                        </p>
+                        <div class="flex flex-wrap gap-4 pt-2">
+                            <button onclick="switchTab('collaboration')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2">
+                                <i class="fa-solid fa-seedling"></i> COLLABORATION Моделі
+                            </button>
+                            <button onclick="switchTab('resources')" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-xl backdrop-blur border border-white/20 transition">
+                                Әдістемелік қоржын
+                            </button>
+                        </div>
+                    </div>
+                    <div class="md:w-5/12 bg-white/10 p-6 rounded-3xl backdrop-blur-md border border-white/20 shadow-2xl">
+                        <div class="text-center p-4">
+                            <div class="w-20 h-20 bg-emerald-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-3xl shadow-lg">
+                                <i class="fa-solid fa-tree"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">«Отбасы ағашы» авторлық моделі</h3>
+                            <p class="text-sm text-slate-200 mb-4">Мектепалды сынып ата-аналарын (5-6 жас) «орындаушыдан» «серіктес пен ресурс авторына» дейін жеткізу жүйесі.</p>
+                            <div class="grid grid-cols-3 gap-2 text-xs text-center font-medium mt-4">
+                                <div class="bg-emerald-900/50 p-2 rounded-lg border border-emerald-400/30">🌱 1. Тамыр<br><span class="text-slate-300 font-normal">Таныс</span></div>
+                                <div class="bg-emerald-900/50 p-2 rounded-lg border border-emerald-400/30">🌿 2. Бұтақ<br><span class="text-slate-300 font-normal">Қатысушы</span></div>
+                                <div class="bg-emerald-900/50 p-2 rounded-lg border border-emerald-400/30">🍎 3. Жеміс<br><span class="text-slate-300 font-normal">Серіктес</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portal Sections Overview Grid -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl font-bold text-slate-900">Платформа мүмкіндіктері</h2>
+                    <p class="text-slate-600 mt-2">«Самға Puls» порталы мектеп пен мектепалды даярлық педагогтарына арналған кешенді құралдарды ұсынады</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div onclick="switchTab('experience')" class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl border border-slate-100 transition cursor-pointer group">
+                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition">Озық тәжірибе</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Үш жылдық педагогикалық сынақтан өткен тиімді кейстер мен заманауи оқыту әдістемелері.</p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div onclick="switchTab('young-teachers')" class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl border border-slate-100 transition cursor-pointer group">
+                        <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-amber-600 transition">Жас мамандарға көмек</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Тәлімгерлік бағдарламасы, сабақ жоспарлау шаблондары және бейімделу нұсқаулықтары.</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div onclick="switchTab('digital')" class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl border border-slate-100 transition cursor-pointer group">
+                        <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-purple-600 transition">Цифрлық педагог</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Іс-тәжірибеде қолданылатын онлайн құралдар, QR-технологиялар және ИИ көмекшілер.</p>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div onclick="switchTab('resources')" class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl border border-slate-100 transition cursor-pointer group">
+                        <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-folder-open"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-emerald-600 transition">Әдістемелік қоржын</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">5 негізгі дағды бойынша ойындар, дидактикалық материалдар мен әдістемелік құралдар.</p>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div onclick="switchTab('collaboration')" class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl border border-slate-100 transition cursor-pointer group md:col-span-2 bg-gradient-to-br from-emerald-50 to-teal-50 border-emerald-200">
+                        <div class="flex items-start justify-between">
+                            <div class="w-12 h-12 bg-emerald-600 text-white rounded-xl flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition shadow-md">
+                                <i class="fa-solid fa-people-roof"></i>
+                            </div>
+                            <span class="bg-emerald-200 text-emerald-800 text-xs px-3 py-1 rounded-full font-bold">Басты жоба</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-emerald-700 transition">Ата-анамен жұмыс (COLLABORATION Моделі)</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">«Отбасы ағашы» бейнесіндегі авторлық модель: Ата-ананы орындаушыдан серіктеске айналдыру. Жол картасы, «Сенім пошташысы» дауыстық хабарламалары және QR-кітапша.</p>
+                        <span class="text-emerald-700 font-semibold text-sm inline-flex items-center gap-1">Жобаны толық қарау <i class="fa-solid fa-arrow-right text-xs"></i></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 2. OZYQ TAZHIRIBE ==================== -->
+        <section id="tab-experience" class="tab-content hidden py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="border-b border-slate-200 pb-5 mb-8">
+                    <h1 class="text-3xl font-bold text-slate-900">Озық педагогикалық тәжірибе</h1>
+                    <p class="text-slate-600 mt-2">Үш жылдық зерделеу нәтижелері және сыналған авторлық әдістемелер</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6 mb-12">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="text-emerald-600 font-bold text-2xl mb-2">2025 жыл</div>
+                        <h4 class="font-semibold text-slate-800 mb-2">Диагностика мен бастау</h4>
+                        <p class="text-sm text-slate-600">Ата-аналардың белсенділігін зерттеу, коммуникациядағы дәстүрлі кедергілерді анықтау және алғашқы модульдерді енгізу.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="text-emerald-600 font-bold text-2xl mb-2">2026 жыл</div>
+                        <h4 class="font-semibold text-slate-800 mb-2">Жүйелендіру және апробация</h4>
+                        <p class="text-sm text-slate-600">«Сенім пошташысы» мен QR-кітапшаны практикаға қосу. Ата-аналарды 3 сатылы модельге бағыттау.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="text-emerald-600 font-bold text-2xl mb-2">2027 жыл</div>
+                        <h4 class="font-semibold text-slate-800 mb-2">Ата-аналар Банкі мен Масштабтау</h4>
+                        <p class="text-sm text-slate-600">Серіктес ата-аналардың жеке ресурстарын платформада жинақтау, әдістемені басқа топтарға тарату.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+                    <h3 class="text-xl font-bold text-slate-900 mb-4">Қалыпты жұмыс пен COLLABORATION моделінің айырмашылығы</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-100 text-slate-700 text-sm">
+                                    <th class="p-4 rounded-l-lg">Көрсеткіш</th>
+                                    <th class="p-4">Қалыпты (дәстүрлі) жұмыс</th>
+                                    <th class="p-4 rounded-r-lg bg-emerald-100 text-emerald-900">COLLABORATION моделі</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 text-sm text-slate-700">
+                                <tr>
+                                    <td class="p-4 font-semibold">Тапсырма беру</td>
+                                    <td class="p-4">Барлық ата-анаға бірдей іс-шара мен тапсырма</td>
+                                    <td class="p-4 bg-emerald-50/50 font-medium text-emerald-900">Әр отбасы диагностикадан кейін өз сатысынан бастайды</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-semibold">Ата-ана рөлі</td>
+                                    <td class="p-4">Ата-ана жай ғана орындаушы</td>
+                                    <td class="p-4 bg-emerald-50/50 font-medium text-emerald-900">Ата-ана соңында ресурс авторына айналады</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-semibold">Бағалау нәтижесі</td>
+                                    <td class="p-4">Нәтиже: «іс-шараға қатысты»</td>
+                                    <td class="p-4 bg-emerald-50/50 font-medium text-emerald-900">Деңгей өсті, ресурс жасалып, платформаға түсті</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-semibold">Тәжірибе таралуы</td>
+                                    <td class="p-4">Тәжірибе тек сол топ ішінде қалады</td>
+                                    <td class="p-4 bg-emerald-50/50 font-medium text-emerald-900">Ата-ана ресурстары басқа топтарға да таралады</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 3. ZHAS MAMANDARGA KOMAK ==================== -->
+        <section id="tab-young-teachers" class="tab-content hidden py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="border-b border-slate-200 pb-5 mb-8">
+                    <h1 class="text-3xl font-bold text-slate-900">Жас мамандарға әдістемелік көмек</h1>
+                    <p class="text-slate-600 mt-2">Тәрбиешілер мен жас педагогтардың кәсіби дамуына арналған нұсқаулықтар</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                        <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center font-bold text-lg">1</div>
+                        <h3 class="text-xl font-bold text-slate-900">Ата-аналармен жұмысты неден бастау керек?</h3>
+                        <p class="text-slate-600 text-sm">Алғашқы кезеңде бағалаудан аулақ болып, сенімді қарым-қатынас орнату маңызды. "Сенім пошташысы" арқылы күн сайын позитивті кері байланыс беріңіз.</p>
+                        <ul class="space-y-2 text-sm text-slate-700 list-disc list-inside">
+                            <li>Баланың кемшілігін жалпы хабарда айтпаңыз.</li>
+                            <li>Күнделікті 30-40 секундтық аудио жеткілікті.</li>
+                            <li>Ата-ананың әрбір кішігірім қолдауын атап өтіңіз.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                        <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center font-bold text-lg">2</div>
+                        <h3 class="text-xl font-bold text-slate-900">«Бір күндік мұғалім» жобасын ұйымдастыру</h3>
+                        <p class="text-slate-600 text-sm">Ата-ананы «Жеміс» сатысына жеткізгенде, оларды сыныпқа шақырып, өз мамандығы немесе хоббиі бойынша 15 минуттық шеберлік сыныбын өткізуге бағыттаңыз.</p>
+                        <ul class="space-y-2 text-sm text-slate-700 list-disc list-inside">
+                            <li>Ата-анаға алдын ала сценарий құруға көмектесіңіз.</li>
+                            <li>Көрнекілік пен құралдарды бірге дайындаңыз.</li>
+                            <li>Соңында балалардың атынан "Алғыс хат" табыстаңыз.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 4. TSIFRLYQ PEDAGOG ==================== -->
+        <section id="tab-digital" class="tab-content hidden py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="border-b border-slate-200 pb-5 mb-8">
+                    <h1 class="text-3xl font-bold text-slate-900">Цифрлық педагог құралдары</h1>
+                    <p class="text-slate-600 mt-2">Оқу-тәрбие процесіне заманауи ИТ-технологиялар мен QR-навигацияны енгізу</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center">
+                        <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                            <i class="fa-solid fa-qrcode"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-2">QR-Кітапша технологиясы</h3>
+                        <p class="text-slate-600 text-sm mb-4">12 беттік интерактивті кітапша. Әрбір бетте оқу әдістемелік видеолары мен тапсырмаларға QR-сілтеме орналастырылған.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center">
+                        <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                            <i class="fa-solid fa-microphone text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-2">Сенім Пошташысы (Podcast)</h3>
+                        <p class="text-slate-600 text-sm mb-4">WhatsApp немесе Telegram арқылы күнделікті дауыстық подкаст жіберу форматы. Ата-ана уақытын үнемдейді.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center">
+                        <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-2">Ата-аналар Базасы (Cloud)</h3>
+                        <p class="text-slate-600 text-sm mb-4">Ата-аналар дайындаған цифрлық ресурстар мен идеялардың бұлттық қоры. Басқа тәрбиешілер еркін қолдана алады.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 5. ADISTEMELIK QORZHYN ==================== -->
+        <section id="tab-resources" class="tab-content hidden py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="border-b border-slate-200 pb-5 mb-8">
+                    <h1 class="text-3xl font-bold text-slate-900">Әдістемелік қоржын (5 Негізгі дағды)</h1>
+                    <p class="text-slate-600 mt-2">Мектепалды сынып (5–6 жас) балаларына арналған 10 минуттық дамытушы ойындар мен бағалау критерийлері</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Skill 1 -->
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                        <div class="bg-emerald-600 text-white p-4 flex items-center justify-between">
+                            <span class="font-bold flex items-center gap-2"><i class="fa-solid fa-child-reaching"></i> 1. Денсаулық</span>
+                            <span class="text-xs bg-emerald-700 px-2 py-1 rounded">10 минут</span>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <h4 class="font-bold text-slate-800">Ойын: «Аю мен қоян»</h4>
+                            <p class="text-xs text-slate-600">«Аю!» – ауыр қадам, «Қоян!» – секіру, «Қасқыр!» – қатып тұру. Соңында бірге терең дем алады.</p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-xs">
+                                <span class="font-semibold block mb-1">Меңгеру белгісі:</span>
+                                <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                    <li>Белгіге қарай қимылды ауыстырады</li>
+                                    <li>5 секунд тепе-теңдік сақтайды</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 2 -->
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                        <div class="bg-blue-600 text-white p-4 flex items-center justify-between">
+                            <span class="font-bold flex items-center gap-2"><i class="fa-solid fa-brain"></i> 2. Таным</span>
+                            <span class="text-xs bg-blue-700 px-2 py-1 rounded">10 минут</span>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <h4 class="font-bold text-slate-800">Ойын: «Сандық ішінде не бар?»</h4>
+                            <p class="text-xs text-slate-600">Қапшықта 5 үй заты. Бала көзін жұмып, қолмен ұстап табады, қасиетін айтады, санайды.</p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-xs">
+                                <span class="font-semibold block mb-1">Меңгеру белгісі:</span>
+                                <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                    <li>5 затты атайды</li>
+                                    <li>1-ден 10-ға дейін санайды</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 3 -->
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                        <div class="bg-purple-600 text-white p-4 flex items-center justify-between">
+                            <span class="font-bold flex items-center gap-2"><i class="fa-solid fa-comments"></i> 3. Коммуникация</span>
+                            <span class="text-xs bg-purple-700 px-2 py-1 rounded">10 минут</span>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <h4 class="font-bold text-slate-800">Ойын: «Бүгін не болды?»</h4>
+                            <p class="text-xs text-slate-600">Кешкі астың кезінде бала карточка (🙂 😐 🙁) таңдап, себебін айтады. Ата-ана да өзінікін айтады.</p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-xs">
+                                <span class="font-semibold block mb-1">Меңгеру белгісі:</span>
+                                <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                    <li>Толық сөйлеммен айтады</li>
+                                    <li>«Себебі...» деп түсіндіреді</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 4 -->
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                        <div class="bg-amber-600 text-white p-4 flex items-center justify-between">
+                            <span class="font-bold flex items-center gap-2"><i class="fa-solid fa-palette"></i> 4. Шығармашылық</span>
+                            <span class="text-xs bg-amber-700 px-2 py-1 rounded">10 минут</span>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <h4 class="font-bold text-slate-800">Ойын: «Қоқыс жәшігінен өнер»</h4>
+                            <p class="text-xs text-slate-600">Қораптан, қақпақтан бірге бір нәрсе жасайды. Ата-ана көмектеседі, бірақ өзі жасап бермейді.</p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-xs">
+                                <span class="font-semibold block mb-1">Меңгеру белгісі:</span>
+                                <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                    <li>Затқа өз атауын ойлап табады</li>
+                                    <li>Жұмысты соңына жеткізеді</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 5 -->
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                        <div class="bg-rose-600 text-white p-4 flex items-center justify-between">
+                            <span class="font-bold flex items-center gap-2"><i class="fa-solid fa-users"></i> 5. Әлеуметтік дағды</span>
+                            <span class="text-xs bg-rose-700 px-2 py-1 rounded">10 минут</span>
+                        </div>
+                        <div class="p-5 space-y-3">
+                            <h4 class="font-bold text-slate-800">Ойын: «Көмекші күн»</h4>
+                            <p class="text-xs text-slate-600">Бала мен ата-ана 3 «көмек» таңдайды. Орындалған сайын жұлдызша жапсырады.</p>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-xs">
+                                <span class="font-semibold block mb-1">Меңгеру белгісі:</span>
+                                <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                    <li>Көмекті өзі ұсынады</li>
+                                    <li>«Рахмет», «кешіріңіз» дейді</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 6. ATA-ANAMEN ZHUMYS (COLLABORATION MODEL) ==================== -->
+        <section id="tab-collaboration" class="tab-content hidden py-12 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                
+                <!-- Model Header -->
+                <div class="bg-white p-8 rounded-3xl border border-emerald-100 shadow-sm relative overflow-hidden">
+                    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+                        <div class="space-y-2">
+                            <span class="bg-emerald-100 text-emerald-800 font-bold text-xs uppercase px-3 py-1 rounded-full">Авторлық Модель · Мектепалды сынып (5-6 жас)</span>
+                            <h1 class="text-3xl font-extrabold text-slate-900">COLLABORATION: АТА-АНА – СЕРІКТЕС</h1>
+                            <p class="text-slate-600">Бейнесі: <span class="text-emerald-700 font-bold">«Отбасы ағашы»</span></p>
+                        </div>
+                        <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200 text-sm space-y-1">
+                            <div><span class="font-semibold text-slate-700">Жоба:</span> MobileSTAR · II тур «Mobile Legacy»</div>
+                            <div><span class="font-semibold text-slate-700">Өнім түрі:</span> Модель + Жол картасы + QR-кітапша + Сенім пошташысы</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 Stages Interactive Section -->
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-6 text-center">Өсу сатылары: «Отбасы ағашы»</h2>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <!-- Stage 1 -->
+                        <div class="tree-stage-card bg-white p-6 rounded-2xl border-2 border-emerald-200 shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-3xl">🌱</span>
+                                    <span class="text-xs bg-slate-100 font-semibold px-2 py-1 rounded text-slate-600">1-ай</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-900 mb-1">1-саты: ТАМЫР</h3>
+                                <div class="text-xs font-semibold text-emerald-600 uppercase mb-3">Рөлі: Таныс</div>
+                                <p class="text-sm text-slate-600 mb-4">Ата-ана хабардар болады, баласының күнделікті жұмысын біледі.</p>
+                                <div class="space-y-2 text-xs text-slate-700">
+                                    <div class="bg-slate-50 p-2 rounded"><strong>Мұғалім:</strong> Диагностика жүргізеді, күнделікті аудио-хабар жібереді.</div>
+                                    <div class="bg-slate-50 p-2 rounded"><strong>Құралдар:</strong> Сауалнама, «Сенім пошташысы», Жол картасы.</div>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-slate-100 text-xs text-emerald-700 font-medium">
+                                <i class="fa-solid fa-check text-xs"></i> Белгі: Баласының не үйреніп жатқанын айта алады.
+                            </div>
+                        </div>
+
+                        <!-- Stage 2 -->
+                        <div class="tree-stage-card bg-white p-6 rounded-2xl border-2 border-emerald-400 shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-3xl">🌿</span>
+                                    <span class="text-xs bg-slate-100 font-semibold px-2 py-1 rounded text-slate-600">2–3 ай</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-900 mb-1">2-саты: БҰТАҚ</h3>
+                                <div class="text-xs font-semibold text-emerald-600 uppercase mb-3">Рөлі: Қатысушы</div>
+                                <p class="text-sm text-slate-600 mb-4">Баласымен бірге әрекет етеді, үй тапсырмасын жүйелі орындайды.</p>
+                                <div class="space-y-2 text-xs text-slate-700">
+                                    <div class="bg-slate-50 p-2 rounded"><strong>Мұғалім:</strong> 5 дағды бойынша тапсырма береді, Ашық сабақ күнін өткізеді.</div>
+                                    <div class="bg-slate-50 p-2 rounded"><strong>Құралдар:</strong> QR-кітапша, ойын-карталар, ашық сабақ.</div>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-slate-100 text-xs text-emerald-700 font-medium">
+                                <i class="fa-solid fa-check text-xs"></i> Белгі: Үйде кемінде 3 тапсырма орындайды.
+                            </div>
+                        </div>
+
+                        <!-- Stage 3 -->
+                        <div class="tree-stage-card bg-white p-6 rounded-2xl border-2 border-emerald-600 shadow-sm flex flex-col justify-between bg-emerald-50/20">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-3xl">🍎</span>
+                                    <span class="text-xs bg-emerald-100 text-emerald-800 font-semibold px-2 py-1 rounded">4-айдан бастап</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-900 mb-1">3-саты: ЖЕМІС</h3>
+                                <div class="text-xs font-semibold text-emerald-600 uppercase mb-3">Рөлі: Серіктес</div>
+                                <p class="text-sm text-slate-600 mb-4">Өз идеясы мен ресурсын жасайды, басқаларға үйретеді.</p>
+                                <div class="space-y-2 text-xs text-slate-700">
+                                    <div class="bg-slate-50 p-2 rounded"><strong>Мұғалім:</strong> Ата-ананың күшті жағына сай рөл ұсынады, платформаға жүктейді.</div>
+                                    <div class="bg-slate-50 p-2 rounded"><strong>Құралдар:</strong> «Бір күндік мұғалім», Ата-аналар банкі.</div>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-slate-100 text-xs text-emerald-700 font-medium">
+                                <i class="fa-solid fa-check text-xs"></i> Белгі: Өз ресурсын жасап, жүктейді/сабақ өткізеді.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Quiz / Questionnaire: қай сатыдасыз? -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+                    <div class="max-w-2xl mx-auto text-center mb-8">
+                        <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-3 py-1 rounded-full uppercase">Ата-ана Жол картасы (1-бет)</span>
+                        <h3 class="text-2xl font-bold text-slate-900 mt-2">«Мен қай сатыдамын?» диагностикалық сауалнамасы</h3>
+                        <p class="text-xs text-slate-500 mt-1">Бұл баға емес, тек бастау нүктесін анықтауға арналған сұрақтар</p>
+                    </div>
+
+                    <form id="quiz-form" onsubmit="calculateStage(event)" class="max-w-2xl mx-auto space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <span class="text-sm font-medium text-slate-700">1. Баламның топта қазір не үйреніп жатқанын білемін</span>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" name="q1" class="w-5 h-5 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500">
+                            </label>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <span class="text-sm font-medium text-slate-700">2. Үйде күн сайын баламен 10 минут арнайы айналысамын</span>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" name="q2" class="w-5 h-5 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500">
+                            </label>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <span class="text-sm font-medium text-slate-700">3. Баламның дағдылары қалыптасып келе жатқанын қалай байқауды білемін</span>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" name="q3" class="w-5 h-5 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500">
+                            </label>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <span class="text-sm font-medium text-slate-700">4. Топ жұмысына өз идеямды бұрын ұсындым</span>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" name="q4" class="w-5 h-5 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500">
+                            </label>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <span class="text-sm font-medium text-slate-700">5. Өз тәжірибемді басқа ата-аналармен бөліскім келеді</span>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" name="q5" class="w-5 h-5 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500">
+                            </label>
+                        </div>
+
+                        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl transition shadow-md">
+                            Нәтижені есептеу
+                        </button>
+                    </form>
+
+                    <div id="quiz-result" class="hidden mt-6 max-w-2xl mx-auto p-6 bg-emerald-50 border-2 border-emerald-500 rounded-2xl text-center">
+                        <div id="quiz-stage-icon" class="text-4xl mb-2">🌱</div>
+                        <h4 id="quiz-stage-title" class="text-xl font-bold text-slate-900"></h4>
+                        <p id="quiz-stage-desc" class="text-sm text-slate-600 mt-2"></p>
+                    </div>
+                </div>
+
+                <!-- Daily Voice Messages Player Mockup (Сенім Пошташысы) -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-900">«Сенім пошташысы»: Күнделікті дауыстық хабар</h3>
+                            <p class="text-xs text-slate-500">Ұзақтығы 30–40 секунд. Мұғалімнің аудио-нұсқаулықтары (5 апталық күн)</p>
+                        </div>
+                        <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-lg flex items-center gap-2">
+                            <i class="fa-solid fa-volume-high text-emerald-600"></i> Аудио үлгілер
+                        </span>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">Дүйсенбі — Денсаулық</span>
+                                <button onclick="playAudioMock('audio1')" class="text-emerald-600 hover:text-emerald-700 font-bold text-sm flex items-center gap-1">
+                                    <i id="icon-audio1" class="fa-solid fa-circle-play text-lg"></i> Тыңдау
+                                </button>
+                            </div>
+                            <p class="text-xs text-slate-600 italic">«Сәлеметсіз бе! Бүгін балаларымыз «Аю мен қоян» ойынында тепе-теңдікті сақтады...»</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs font-bold bg-blue-100 text-blue-800 px-2 py-0.5 rounded">Сейсенбі — Таным</span>
+                                <button onclick="playAudioMock('audio2')" class="text-emerald-600 hover:text-emerald-700 font-bold text-sm flex items-center gap-1">
+                                    <i id="icon-audio2" class="fa-solid fa-circle-play text-lg"></i> Тыңдау
+                                </button>
+                            </div>
+                            <p class="text-xs text-slate-600 italic">«Сәлеметсіз бе! Бүгін балалар қапшықтың ішіндегі затты қолмен ұстап тапты...»</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs font-bold bg-purple-100 text-purple-800 px-2 py-0.5 rounded">Сәрсенбі — Коммуникация</span>
+                                <button onclick="playAudioMock('audio3')" class="text-emerald-600 hover:text-emerald-700 font-bold text-sm flex items-center gap-1">
+                                    <i id="icon-audio3" class="fa-solid fa-circle-play text-lg"></i> Тыңдау
+                                </button>
+                            </div>
+                            <p class="text-xs text-slate-600 italic">«Сәлеметсіз бе! Бүгін балалар «Мен бүгін ... болдым, себебі ...» деп сөйледі...»</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded">Бейсенбі — Шығармашылық</span>
+                                <button onclick="playAudioMock('audio4')" class="text-emerald-600 hover:text-emerald-700 font-bold text-sm flex items-center gap-1">
+                                    <i id="icon-audio4" class="fa-solid fa-circle-play text-lg"></i> Тыңдау
+                                </button>
+                            </div>
+                            <p class="text-xs text-slate-600 italic">«Сәлеметсіз бе! Бүгін қораптан әрқайсысы өз «кемесін» жасады...»</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats and proof section -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-6">Нәтижені дәлелдеу динамикасы</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                        <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-100">
+                            <div class="text-3xl font-extrabold text-emerald-600">15% ➔ 68%</div>
+                            <div class="text-xs text-slate-600 mt-1">«Жеміс» сатысына жеткен ата-аналар</div>
+                        </div>
+                        <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-100">
+                            <div class="text-3xl font-extrabold text-emerald-600">40% ➔ 92%</div>
+                            <div class="text-xs text-slate-600 mt-1">Іс-шараларға белсенді қатысу</div>
+                        </div>
+                        <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-100">
+                            <div class="text-3xl font-extrabold text-emerald-600">24+</div>
+                            <div class="text-xs text-slate-600 mt-1">Ата-аналар жасаған авторлық ресурс</div>
+                        </div>
+                        <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-100">
+                            <div class="text-3xl font-extrabold text-emerald-600">12</div>
+                            <div class="text-xs text-slate-600 mt-1">«Бір күндік мұғалім» сабақтары</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm space-y-3">
+            <div class="flex justify-center items-center space-x-2 text-white font-bold text-lg">
+                <i class="fa-solid fa-tree text-emerald-500"></i>
+                <span>Самға Puls</span>
+            </div>
+            <p>COLLABORATION: АТА-АНА – СЕРІКТЕС · «Отбасы ағашы» авторлық моделі</p>
+            <p class="text-xs text-slate-500"> MobileSTAR · II тур «Mobile Legacy» жобасы аясында әзірленді.</p>
+        </div>
+    </footer>
+
+    <!-- JS LOGIC FOR TABS AND QUIZ -->
+    <script>
+        // Navigation Switching Logic
+        function switchTab(tabId) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(el => el.classList.add('hidden'));
+            contents.forEach(el => el.classList.remove('block'));
+
+            // Show selected tab content
+            const target = document.getElementById(`tab-${tabId}`);
+            if (target) {
+                target.classList.remove('hidden');
+                target.classList.add('block');
+            }
+
+            // Update Nav Buttons styling
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => btn.classList.remove('active-tab'));
+
+            const currentNav = document.getElementById(`nav-${tabId}`);
+            if (currentNav) {
+                currentNav.classList.add('active-tab');
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Toggle Mobile Navigation
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Diagnostic Quiz Logic
+        function calculateStage(e) {
+            e.preventDefault();
+            const form = e.target;
+            let yesCount = 0;
+
+            if (form.q1.checked) yesCount++;
+            if (form.q2.checked) yesCount++;
+            if (form.q3.checked) yesCount++;
+            if (form.q4.checked) yesCount++;
+            if (form.q5.checked) yesCount++;
+
+            const resultDiv = document.getElementById('quiz-result');
+            const icon = document.getElementById('quiz-stage-icon');
+            const title = document.getElementById('quiz-stage-title');
+            const desc = document.getElementById('quiz-stage-desc');
+
+            resultDiv.classList.remove('hidden');
+
+            if (yesCount <= 1) {
+                icon.textContent = '🌱';
+                title.textContent = 'Сіздің сатыңыз: 1-саты — ТАМЫР (Таныс)';
+                desc.textContent = 'Сіз балаңыздың мектептегі тыныс-тіршілігімен танысатын бастапқы кезеңдесіз. «Сенім пошташысы» күнделікті аудионамаларын тыңдаудан бастаңыз!';
+            } else if (yesCount <= 3) {
+                icon.textContent = '🌿';
+                title.textContent = 'Сіздің сатыңыз: 2-саты — БҰТАҚ (Қатысушы)';
+                desc.textContent = 'Сіз балаңызбен бірге белсенді тапсырмалар орындайсыз! Енді QR-кітапшадағы ойындарды қолданып, ашық сабақтарға қатысуға дайынсыз.';
+            } else {
+                icon.textContent = '🍎';
+                title.textContent = 'Сіздің сатыңыз: 3-саты — ЖЕМІС (Серіктес)';
+                desc.textContent = 'Құттықтаймыз! Сіз толыққанды серіктессіз. Өз авторлық ресурсыңызды жасап, «Бір күндік мұғалім» шеберлік сабағын өткізе аласыз!';
+            }
+        }
+
+        // Mock audio player functionality
+        let currentPlaying = null;
+        function playAudioMock(id) {
+            const icon = document.getElementById(`icon-${id}`);
+            
+            if (currentPlaying && currentPlaying !== id) {
+                const prevIcon = document.getElementById(`icon-${currentPlaying}`);
+                if (prevIcon) {
+                    prevIcon.className = "fa-solid fa-circle-play text-lg";
+                }
+            }
+
+            if (icon.classList.contains('fa-circle-play')) {
+                icon.className = "fa-solid fa-circle-pause text-lg text-rose-600";
+                currentPlaying = id;
+            } else {
+                icon.className = "fa-solid fa-circle-play text-lg";
+                currentPlaying = null;
+            }
+        }
+    </script>
+</body>
+</html>
